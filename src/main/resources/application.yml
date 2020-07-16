@@ -1,0 +1,7 @@
+micronaut:
+  application:
+    name: phoneValidation
+
+endpoints:
+  health:
+    details-visible: ANONYMOUS
