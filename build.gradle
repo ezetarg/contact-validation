@@ -21,6 +21,10 @@ dependencies {
     annotationProcessor(platform("io.micronaut:micronaut-bom:$micronautVersion"))
     annotationProcessor("io.micronaut:micronaut-inject-java")
     annotationProcessor("io.micronaut:micronaut-validation")
+    annotationProcessor "org.projectlombok:lombok:1.18.12"
+    annotationProcessor "io.micronaut:micronaut-inject-java"
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+
     implementation(platform("io.micronaut:micronaut-bom:$micronautVersion"))
     implementation("io.micronaut:micronaut-inject")
     implementation("io.micronaut:micronaut-validation")
@@ -36,6 +40,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("io.micronaut.test:micronaut-test-junit5")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.11.0'
 }
 
 test.classpath += configurations.developmentOnly
