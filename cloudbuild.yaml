@@ -1,0 +1,31 @@
+steps:
+  - name: gradle:jdk11
+    entrypoint: gradle
+    args:
+      - 'build'
+      - '-Pversion=$TAG_NAME'
+    id: build-jar
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - 'build'
+      - '--tag=gcr.io/$PROJECT_ID/$REPO_NAME'
+      - '--tag=gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME'
+      - '.'
+    id: build-docker-image
+    waitFor:
+      - build-jar
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/$REPO_NAME'
+    id: push-docker-image
+    waitFor:
+      - build-docker-image
+
+substitutions:
+  TAG_NAME: $SHORT_SHA
+
+tags:
+  - $REPO_NAME
