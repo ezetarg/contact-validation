@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: contact-validation-service
+spec:
+  type: NodePort # ClusterIP || NodePort || LoadBalancer
+  selector:
+    app: contact-validation-api # deployment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

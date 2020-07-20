@@ -24,7 +24,19 @@ steps:
     waitFor:
       - build-docker-image
 
+  - name: gcr.io/cloud-builders/gke-deploy
+    args:
+      - 'run'
+      - '--filename=k8s/deployment.yaml'
+      - '--image=gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME'
+      - '--location=${_CLUSTER_ZONE}'
+      - '--cluster=${_CLUSTER_NAME}'
+    waitFor:
+      - push-docker-image
+
 substitutions:
+  _CLUSTER_NAME: $PROJECT_ID
+  _CLUSTER_ZONE: us-central1-c
   TAG_NAME: $SHORT_SHA
 
 tags:

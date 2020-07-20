@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contact-validation-deployment
+  labels:
+    app: contact-validation-api
+spec: # replica set
+  replicas: 2 # cantidad de pods
+  selector:
+    matchLabels:
+      app: contact-validation-api
+  minReadySeconds: 40
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template: # pod template
+    metadata:
+      labels:
+        app: contact-validation-api
+    spec:
+      containers: # docker container[i]
+        - name: contact-validation-container
+          image: gcr.io/ezetarg-gke/contact-validation
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
