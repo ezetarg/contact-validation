@@ -27,7 +27,7 @@ steps:
   - name: gcr.io/cloud-builders/gke-deploy
     args:
       - 'run'
-      - '--filename=k8s/deployment.yaml'
+      - '--filename=k8s/complete.yaml'
       - '--image=gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME'
       - '--location=${_CLUSTER_ZONE}'
       - '--cluster=${_CLUSTER_NAME}'
