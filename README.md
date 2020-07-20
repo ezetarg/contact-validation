@@ -1,8 +1,7 @@
-## Feature management documentation
+# Aplicación java con Micronaut
 
-- [Micronaut Micronaut Management documentation](https://docs.micronaut.io/latest/guide/index.html#management)
+## CI/CD
+- [CI/CD con Google Cloud Platform](https://github.com/ezetarg/contact-validation/blob/master/CICD_GoogleCloudPlatform.md)
 
-## Feature http-client documentation
-
-- [Micronaut Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
-
+## Features de Micronaut utilizadas
+- [Micronaut Management](https://docs.micronaut.io/latest/guide/index.html#management)

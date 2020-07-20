@@ -74,7 +74,7 @@ CMD ["java", "-Dcom.sun.management.jmxremote", "-Xmx128m", "-jar", "app.jar"]
      En este ejemplo se establece que si la variable TAG_NAME no está informada (si el build no se ejecuta sobre un tag de git),
      entonces debe tomar el valor de la variable SHORT_SHA.
 
-    - También es posible establecer etiquetas a los builds para luego poder ubicarlos de manera más sencilla.
+   - También es posible establecer etiquetas a los builds para luego poder ubicarlos de manera más sencilla.
      ```yaml
      tags:
        - $REPO_NAME
@@ -120,7 +120,7 @@ En caso de usar un cluster privado se sugiere revisar la [documentación](https:
      - name: gcr.io/cloud-builders/gke-deploy
        args:
          - 'run'
-         - '--filename=k8s/deployment.yaml'
+         - '--filename=k8s/complete.yaml'
          - '--image=gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME'
          - '--location=us-east1'
          - '--cluster=my-cluster-name'
@@ -161,7 +161,7 @@ del archivo cloudbuild.yaml usando variables para indicar el cluster a utilizar 
 1. También es posible etiquetar de forma distinta las imágenes docker generadas.
    Por ejemplo:
    - Para el ambiente de staging puede dispararse el builder con cada push a master.
-     En ese caso al no haber un TAG_NAME, se usará el SHORT_SHA del commit.
+     En ese caso al no haber un `TAG_NAME`, se usará el `SHORT_SHA` del commit.
    - Para el ambiente de producción, el trigger puede dispararse al crearse un tag.
      En este caso se usaría el nombre del tag para etiquetar la imagen.
 
